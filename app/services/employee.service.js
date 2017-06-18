@@ -20,6 +20,11 @@ var RestService = (function () {
         var list = this.restangular.all("employees").getList();
         return list;
     };
+    RestService.prototype.doLogin = function () {
+        var newAccount = { ma_so_thue: "0201597153", serial_number: "710000000728665830D963E107000000000007" };
+        var login = this.restangular.one("login").post(newAccount);
+        return login;
+    };
     return RestService;
 }());
 RestService = __decorate([

@@ -13,7 +13,10 @@ var employee_component_1 = require("./employee.component");
 var ng2_restangular_1 = require("ng2-restangular");
 var employee_service_1 = require("./services/employee.service");
 function restangular(RestangularProvider) {
-    RestangularProvider.setBaseUrl('https://5944f686cf46400011a81285.mockapi.io/vtvcab/');
+    //RestangularProvider.setBaseUrl('http://id.vtvcab.vn/vod/api/ott');
+    RestangularProvider.setBaseUrl('http://rrhd.ihtkk.com.vn:3000/api/user/');
+    //RestangularProvider.setBaseUrl('https://5944f686cf46400011a81285.mockapi.io/vtvcab/');
+    RestangularProvider.setDefaultHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
     // RestangularProvider.setDefaultRequestParams({
     //     apikey: '586680ad69ce295b1738efe5'
     // });

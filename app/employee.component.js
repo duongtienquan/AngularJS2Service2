@@ -10,16 +10,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var employee_service_1 = require("./services/employee.service");
+var ng2_restangular_1 = require("ng2-restangular");
 var EmployeeListComponent = (function () {
-    function EmployeeListComponent(restService) {
-        this.restService = restService;
+    // constructor(private restService: RestService) {
+    // }
+    // ngOnInit() {
+    //     this.restService.doLogin().subscribe(
+    //         (res) => {
+    //             this.todoList = res;
+    //             console.log(this.todoList);
+    //         },
+    //         (err) => {
+    //             console.log(err);
+    //         });
+    // }
+    function EmployeeListComponent(restangular) {
+        this.restangular = restangular;
     }
     EmployeeListComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.restService.getTodoList().subscribe(function (res) {
-            _this.todoList = res;
-            console.log(_this.todoList);
+        var baseAccounts = this.restangular.one('login');
+        var newAccount = { ma_so_thue: "0201597153", serial_number: "710000000728665830D963E107000000000007" };
+        //let baseAccounts = this.restangular.one('getAccountDetail');
+        //let newAccount = {accountNumber: "5963549",key:"vtvcab01",token:"",tokenAPI:""};
+        // let headers = { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' };
+        // let options ={method: "POST", headers: headers };
+        // let headers = new Headers({ 'Accept': 'application/json' });
+        // headers.append('application/x-www-form-urlencoded; charset=UTF-8', 'Content-Type');
+        // headers.append('Access-Control-Allow-Methods', 'POST');
+        // headers.append('Access-Control-Allow-Origin', '*');
+        // let options = new RequestOptions({ headers: headers });
+        baseAccounts.customPOST(undefined, undefined, newAccount, undefined).subscribe(function (res) {
+            //this.todoList = res;
+            console.log(res);
         }, function (err) {
             console.log(err);
         });
@@ -31,7 +53,7 @@ EmployeeListComponent = __decorate([
         selector: 'employee-list',
         templateUrl: './app/employee.component.html'
     }),
-    __metadata("design:paramtypes", [employee_service_1.RestService])
+    __metadata("design:paramtypes", [ng2_restangular_1.Restangular])
 ], EmployeeListComponent);
 exports.EmployeeListComponent = EmployeeListComponent;
 //# sourceMappingURL=employee.component.js.map
